@@ -1,0 +1,127 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "viewRolesProject": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/viewRolesProject",
+      "sourceRoot": "projects/viewRolesProject/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/viewRolesProject",
+            "index": "projects/viewRolesProject/src/index.html",
+            "main": "projects/viewRolesProject/src/main.ts",
+            "polyfills": "projects/viewRolesProject/src/polyfills.ts",
+            "tsConfig": "projects/viewRolesProject/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/viewRolesProject/src/favicon.ico",
+              "projects/viewRolesProject/src/assets"
+            ],
+            "styles": [
+              "projects/viewRolesProject/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/viewRolesProject/src/environments/environment.ts",
+                  "with": "projects/viewRolesProject/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "viewRolesProject:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "viewRolesProject:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "viewRolesProject:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/viewRolesProject/src/test.ts",
+            "polyfills": "projects/viewRolesProject/src/polyfills.ts",
+            "tsConfig": "projects/viewRolesProject/tsconfig.spec.json",
+            "karmaConfig": "projects/viewRolesProject/karma.conf.js",
+            "assets": [
+              "projects/viewRolesProject/src/favicon.ico",
+              "projects/viewRolesProject/src/assets"
+            ],
+            "styles": [
+              "projects/viewRolesProject/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/viewRolesProject/tsconfig.app.json",
+              "projects/viewRolesProject/tsconfig.spec.json",
+              "projects/viewRolesProject/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/viewRolesProject/e2e/protractor.conf.js",
+            "devServerTarget": "viewRolesProject:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "viewRolesProject:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "viewRolesProject"
+}
